@@ -1,0 +1,14 @@
+input.input-container {
+    width: 200px;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.input-container[type="submit"] {
+    border-radius: 5px;
+    border: none;
+    background: #5c64db;
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import './style.css';
 
-const Menu = () => {
+type MenuType = {
+  isUserLogin: boolean;
+}
+
+const Menu = ({ isUserLogin }: MenuType) => {
   return (
     <nav>
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/trade">Trade</Link>
-        </li>
+        {isUserLogin && (
+          <li>
+            <Link to="/trade">Trade</Link>
+          </li>
+        )}
       </ul>
     </nav>
    )

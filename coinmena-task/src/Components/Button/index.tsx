@@ -4,14 +4,16 @@ import './style.css';
 
 export type ButtonType = {
   className?: string;
-	children: ReactChild
+  children: ReactChild;
+  onButtonClick: () => void
 }
 
 const Button = ({
 	children,
-	className
+	className,
+	onButtonClick
 } : ButtonType) => (
-	<button className={className} type="button">
+	<button onClick={onButtonClick} className={className} type="button">
 		{children}
 	</button>
 )

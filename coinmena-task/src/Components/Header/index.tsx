@@ -3,13 +3,21 @@ import UserInfo from '../UserInfo';
 
 import './style.css';
 
-const HeaderContainer = () => {
+export type headerType = {
+  isUserLogin: boolean;
+  handleUserLogin: () => void;
+}
+
+const Header = ({
+  isUserLogin,
+  handleUserLogin
+}: headerType) => {
   return (
     <header className='header-container'>
-      <Menu />
-      <UserInfo />
+      <Menu isUserLogin={isUserLogin} />
+      <UserInfo isUserLogin={isUserLogin} handleUserLogin={handleUserLogin} />
     </header>
   )
 }
 
-export default HeaderContainer;
+export default Header;

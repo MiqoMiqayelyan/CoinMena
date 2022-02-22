@@ -1,43 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactChild } from 'react';
+import clsx from 'clsx';
 import { ModalHeader } from './Header';
 
 import './style.css';
 
-type ModalType = {
-    title?: string;
-    hideCloseButton?: boolean;
-    open: boolean;
-    onClose: () => void
+export type ModalType = {
+  title?: string;
+  hideCloseButton?: boolean;
+  open: boolean;
+  children: ReactChild;
+  onClose?: () => void
 }
 
 const Modal = (props: ModalType) => {
-    const {
-      title,
-      hideCloseButton,
-      open,
-      onClose,
-    } = props;
-    const showHeader = !!title || !hideCloseButton;
-    const [closed, setClosed] = useState(false);
-    const hiddenClass = closed ? 'modal-hidden' : '';
+  const {
+    title,
+    hideCloseButton,
+    open,
+    onClose,
+    children
+  } = props;
+  const showHeader = !!title || !hideCloseButton;
+  const [isOpen, setIsOpen] = useState(false);
+  const hiddenClass = isOpen ? '' : 'modal-hidden';
 
-    useEffect(() => {
-        setClosed(open);
+  useEffect(() => {
+    setIsOpen(open);
+  },[open]);
 
-    },[open]);
+  const close = () => {
+    if(onClose){
+      onClose();
+    }
+    setIsOpen(false);
+  };
 
-    const close = () => {
-        if(onClose){
-            onClose();
-        }
-        setClosed(true);
-    };
+  const containerClassName = clsx('modal-container', hiddenClass)
 
-    return (
-        <div className={hiddenClass}>
-            {showHeader && <ModalHeader onClickHide={close} />}
-        </div>
-    )
+  return (
+    <div className={containerClassName}>
+      <div className='modal-content'>
+        {showHeader && <ModalHeader {...props} onClickHide={close} />}
+        <main className='modal-main'>
+          {children}
+        </main>
+      </div>
+    </div>
+  )
 }
 
 export default Modal;
