@@ -6,15 +6,27 @@ export type ModalHeaderProps = {
   onClickHide?: () => void
 }
 
-export const ModalHeader: React.FC<ModalHeaderProps> = ({ title, hideCloseButton, onClickHide }) => (
+const ModalHeader = ({
+  title,
+  hideCloseButton,
+  onClickHide,
+}: ModalHeaderProps) => (
   <header className="modal-header">
     <div className="modal-title">
       {title || ''}
     </div>
     {hideCloseButton ? '' : (
-      <div className="modal-close" onClick={onClickHide}>
+      <div
+        tabIndex={0}
+        role="button"
+        className="modal-close"
+        onClick={onClickHide}
+        onKeyDown={onClickHide}
+      >
         ×
       </div>
     )}
   </header>
 );
+
+export default ModalHeader;

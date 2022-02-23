@@ -20,13 +20,13 @@ const Input = ({
   className,
   inputValue,
   inputPlaceholder = '',
-  onChange
+  onChange,
 }: InputType) => {
-  const inputClassName = clsx('input-container', className)
+  const inputClassName = clsx('input-container', className);
 
   return (
-    <label>
-      {labelName}
+    <>
+      <label htmlFor={labelName}>{labelName}</label>
       <input
         className={inputClassName}
         type={type}
@@ -34,9 +34,10 @@ const Input = ({
         onChange={onChange}
         value={inputValue}
         placeholder={inputPlaceholder}
+        id={labelName}
       />
-    </label>
-  )
-}
+    </>
+  );
+};
 
 export default Input;

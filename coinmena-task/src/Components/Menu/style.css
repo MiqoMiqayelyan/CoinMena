@@ -13,6 +13,10 @@ ul li a {
   color: #000;
 }
 
+ul li a.active {
+  color: #008B8B;
+}
+
 ul li a:hover {
-  color: blue;
+  color: #00008B;
 }

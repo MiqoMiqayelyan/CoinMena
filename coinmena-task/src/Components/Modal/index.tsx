@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactChild } from 'react';
 import clsx from 'clsx';
-import { ModalHeader } from './Header';
+import ModalHeader from './Header';
 
 import './style.css';
 
@@ -18,7 +18,7 @@ const Modal = (props: ModalType) => {
     hideCloseButton,
     open,
     onClose,
-    children
+    children,
   } = props;
   const showHeader = !!title || !hideCloseButton;
   const [isOpen, setIsOpen] = useState(false);
@@ -26,27 +26,28 @@ const Modal = (props: ModalType) => {
 
   useEffect(() => {
     setIsOpen(open);
-  },[open]);
+  }, [open]);
 
   const close = () => {
-    if(onClose){
+    if (onClose) {
       onClose();
     }
     setIsOpen(false);
   };
 
-  const containerClassName = clsx('modal-container', hiddenClass)
+  const containerClassName = clsx('modal-container', hiddenClass);
 
   return (
     <div className={containerClassName}>
-      <div className='modal-content'>
-        {showHeader && <ModalHeader {...props} onClickHide={close} />}
-        <main className='modal-main'>
+      <div className="modal-content">
+        {showHeader
+          && <ModalHeader title={title} hideCloseButton={hideCloseButton} onClickHide={close} />}
+        <main className="modal-main">
           {children}
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Modal;

@@ -6,9 +6,10 @@ input.input-container {
 }
 
 .input-container[type="submit"] {
+    height: 35px;
     border-radius: 5px;
     border: none;
-    background: #5c64db;
+    background: #00008B;
     color: #fff;
     cursor: pointer;
 }

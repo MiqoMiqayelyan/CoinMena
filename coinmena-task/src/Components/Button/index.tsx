@@ -1,4 +1,4 @@
-import { ReactChild } from "react";
+import { ReactChild } from 'react';
 
 import './style.css';
 
@@ -9,13 +9,13 @@ export type ButtonType = {
 }
 
 const Button = ({
-	children,
-	className,
-	onButtonClick
+  children,
+  className,
+  onButtonClick,
 } : ButtonType) => (
-	<button onClick={onButtonClick} className={className} type="button">
-		{children}
-	</button>
-)
+  <button onClick={onButtonClick} className={className} type="button">
+    {children}
+  </button>
+);
 
 export default Button;

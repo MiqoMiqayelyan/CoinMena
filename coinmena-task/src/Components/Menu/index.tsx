@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 import './style.css';
 
 type MenuType = {
@@ -6,20 +6,24 @@ type MenuType = {
 }
 
 const Menu = ({ isUserLogin }: MenuType) => {
+  const location = useLocation();
+  const isHomeActive = location.pathname === '/';
+  const isTradeActive = location.pathname === '/trade';
+
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link className={isHomeActive ? 'active' : ''} to="/">Home</Link>
         </li>
         {isUserLogin && (
           <li>
-            <Link to="/trade">Trade</Link>
+            <Link className={isTradeActive ? 'active' : ''} to="/trade">Trade</Link>
           </li>
         )}
       </ul>
     </nav>
-   )
-}
+  );
+};
 
 export default Menu;

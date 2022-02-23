@@ -1,3 +1,1 @@
-export const inputValidation = (value) => {
-    return value !== '';
-}
+export const inputValidation = (value) => value !== '';

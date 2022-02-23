@@ -5,19 +5,17 @@ import './style.css';
 
 export type headerType = {
   isUserLogin: boolean;
-  handleUserLogin: () => void;
+  userLoginToggle: () => void;
 }
 
 const Header = ({
   isUserLogin,
-  handleUserLogin
-}: headerType) => {
-  return (
-    <header className='header-container'>
-      <Menu isUserLogin={isUserLogin} />
-      <UserInfo isUserLogin={isUserLogin} handleUserLogin={handleUserLogin} />
-    </header>
-  )
-}
+  userLoginToggle,
+}: headerType) => (
+  <header className="header-container">
+    <Menu isUserLogin={isUserLogin} />
+    <UserInfo isUserLogin={isUserLogin} userLoginToggle={userLoginToggle} />
+  </header>
+);
 
 export default Header;
