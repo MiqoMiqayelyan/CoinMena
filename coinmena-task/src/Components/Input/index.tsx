@@ -1,16 +1,16 @@
+import { ChangeEvent, useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { ChangeEvent } from 'react';
 
 import './style.css';
 
-type InputType = {
+interface InputType {
   disabled?: boolean;
   labelName?: string;
   type: 'text' | 'email' | 'password' | 'submit';
   className?: string;
   inputValue?: string | number;
   inputPlaceholder?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -22,21 +22,36 @@ const Input = ({
   inputPlaceholder = '',
   onChange,
 }: InputType) => {
+  const [value, setValue] = useState<InputType['inputValue']>('');
   const inputClassName = clsx('input-container', className);
 
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const targetValue = event.target.value;
+
+    setValue(targetValue);
+
+    if (onChange) {
+      onChange(targetValue, event);
+    }
+  };
+
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
+
   return (
-    <>
-      <label htmlFor={labelName}>{labelName}</label>
+    <label>
+      {labelName}
       <input
         className={inputClassName}
         type={type}
         disabled={disabled}
-        onChange={onChange}
-        value={inputValue}
+        onChange={onChangeHandler}
+        value={value}
         placeholder={inputPlaceholder}
         id={labelName}
       />
-    </>
+    </label>
   );
 };
 

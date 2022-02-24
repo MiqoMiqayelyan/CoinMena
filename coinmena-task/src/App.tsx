@@ -4,10 +4,18 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
+
 import Header from './Components/Header';
+import Home from './Pages/Home';
 import { getItemToStorage } from './Utils/localStorage';
 
 import './App.css';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const [isUserLogin, setIsUserLogin] = useState<boolean>(false);
@@ -23,13 +31,17 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <Header isUserLogin={isUserLogin} userLoginToggle={userLoginToggle} />
-      <Routes>
-        <Route path="/" />
-        <Route path="/trade" />
-      </Routes>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Header isUserLogin={isUserLogin} userLoginToggle={userLoginToggle} />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/trade" />
+          </Routes>
+        </main>
+      </Router>
+    </QueryClientProvider>
   );
 };
 

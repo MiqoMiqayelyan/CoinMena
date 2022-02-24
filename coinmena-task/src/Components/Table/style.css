@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+
+table thead {
+    background: rgb(208, 232, 255);
+    color: #a3a3a3fe;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+table thead tr th {
+    padding: 20px;
+}
+
+tbody {
+    padding: 20px 0;
+}
+
+tbody tr {
+    text-align: center;
+}
+
+tbody tr td {
+    font-weight: 600;
+    font-size: 18px;
+    padding: 5px;
+}

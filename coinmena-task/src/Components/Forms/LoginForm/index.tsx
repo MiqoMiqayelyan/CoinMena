@@ -19,17 +19,17 @@ const LoginForm = ({
     password: '',
   });
 
-  const onEmailChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const onEmailChange = useCallback((value: string) => {
     setFormData((state) => ({
       ...state,
-      email: event.target.value,
+      email: value,
     }));
   }, []);
 
-  const onPasswordChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const onPasswordChange = useCallback((value: string) => {
     setFormData((state) => ({
       ...state,
-      password: event.target.value,
+      password: value,
     }));
   }, []);
 
@@ -56,14 +56,12 @@ const LoginForm = ({
         labelName="Email"
         onChange={onEmailChange}
         inputPlaceholder="Write your Email"
-        inputValue={formData.email}
       />
       <Input
         type="password"
         labelName="Password"
         onChange={onPasswordChange}
         inputPlaceholder="Write your Password"
-        inputValue={formData.password}
       />
       <Input type="submit" inputValue="Submit" />
     </form>
