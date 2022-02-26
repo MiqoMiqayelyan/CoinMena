@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { tableType } from './index';
 
 type TableBodyType = {

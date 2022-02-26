@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useEffect, ReactChild } from 'react';
 import clsx from 'clsx';
 import ModalHeader from './Header';
@@ -39,6 +40,7 @@ const Modal = (props: ModalType) => {
 
   return (
     <div className={containerClassName}>
+      <div aria-label="Mute volume" tabIndex={0} role="button" onClick={close} className="layer" />
       <div className="modal-content">
         {showHeader
           && <ModalHeader title={title} hideCloseButton={hideCloseButton} onClickHide={close} />}

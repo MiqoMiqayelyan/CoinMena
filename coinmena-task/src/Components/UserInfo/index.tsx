@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import Modal from '../Modal';
 import LoginForm from '../Forms/LoginForm';
@@ -15,6 +16,7 @@ const UserInfo = ({
   isUserLogin,
   userLoginToggle,
 }: userInfoType) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleLoginClick = useCallback(() => {
@@ -28,6 +30,7 @@ const UserInfo = ({
   const handleLogOutClick = useCallback(() => {
     removeItemToStorage('isUserLogin');
     userLoginToggle(false);
+    navigate('/');
   }, [userLoginToggle]);
 
   const handleFormSubmit = useCallback(() => {

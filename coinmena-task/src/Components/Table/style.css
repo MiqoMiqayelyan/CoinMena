@@ -2,7 +2,7 @@ table {
     width: 100%;
     background: #fff;
     border-radius: 5px;
-    border: 1px solid #000000;
+    border: 1px solid #889cd4;
 }
 
 table thead {
@@ -14,6 +14,17 @@ table thead {
 
 table thead tr th {
     padding: 20px;
+    text-align: right;
+}
+
+table thead .sorting {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+
+table thead .sorting p {
+    margin-right: 10px;
 }
 
 tbody {
@@ -21,11 +32,11 @@ tbody {
 }
 
 tbody tr {
-    text-align: center;
+    text-align: right;
 }
 
 tbody tr td {
     font-weight: 600;
-    font-size: 18px;
-    padding: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
 }

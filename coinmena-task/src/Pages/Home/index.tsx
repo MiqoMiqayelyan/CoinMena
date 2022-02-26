@@ -1,34 +1,41 @@
-/* eslint-disable dot-notation */
+/* eslint-disable no-return-await */
+/* eslint-disable camelcase */
 import { useQuery } from 'react-query';
-import axios from 'axios';
 
+import { useEffect, useState } from 'react';
 import Table from '../../Components/Table';
-import Button from '../../Components/Button';
+import Select from '../../Components/Select';
+
+import { fetchListWithParams } from '../../API/Assets';
 
 type responseTypes = {
   id: string,
   name: string,
+  serial_id: number,
   metrics: {
     market_data: {
       price_usd: number
     }
   }
 }
-// TODO move API request to another folder
-const fetchList = async () => {
-  const { data } = await axios.get('https://data.messari.io/api/v1/assets', { params: { limit: 10 } });
 
-  return data;
-};
 // TODO create field file
 const fieldsForHeader = [
   {
+    name: 'serialId',
+    label: 'Id',
+  },
+  {
     name: 'name',
-    label: 'Product Name',
+    label: 'Name',
+    sortable: true,
+    sortBy: 'name',
   },
   {
     name: 'metrics',
     label: 'Price',
+    sortable: true,
+    sortBy: 'price',
   },
   {
     name: 'actionButtons',
@@ -37,25 +44,57 @@ const fieldsForHeader = [
   },
 ];
 
+const selectOptions = [
+  {
+    value: 'Buy',
+    label: 'Buy',
+  },
+  {
+    value: 'Sell',
+    label: 'Sell',
+  },
+];
+
 const Home = () => {
+  const [sortingValue, setSortingValue] = useState('');
   const {
     data,
-  } = useQuery('posts', fetchList);
+    refetch,
+  } = useQuery(
+    'posts',
+    // sorting is not working , need understood sort value for request
+    async () => await fetchListWithParams({ limit: 10, sort: sortingValue }),
+  );
 
   const fieldsForBody = data?.data?.map((response: responseTypes) => {
-    const { name } = response;
+    const { name, serial_id } = response;
     const price = response?.metrics?.market_data?.price_usd;
 
     return ({
+      serial_id,
       name,
       price,
-      actions: <button type="button">AA</button>, // TODO create select component
+      actions: <Select options={selectOptions} />,
     });
   });
 
+  const handleSortClick = (value: string) => {
+    setSortingValue(value);
+  };
+
+  useEffect(() => {
+    if (sortingValue !== '') {
+      refetch();
+    }
+  }, [sortingValue]);
+
   return (
     <div>
-      <Table fieldsForHeader={fieldsForHeader} fieldsForBody={fieldsForBody} />
+      <Table
+        onSortClick={handleSortClick}
+        fieldsForHeader={fieldsForHeader}
+        fieldsForBody={fieldsForBody}
+      />
     </div>
   );
 };

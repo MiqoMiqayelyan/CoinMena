@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
@@ -12,18 +12,33 @@ export interface tableType {
   }[];
   fieldsForHeader: {
     name: string,
-    label: string
+    label: string,
+    sortable?: boolean,
+    sortBy?: string,
   }[]
   tableClass?: string;
+  sortKey?: string;
+  onSortClick?: (value: string) => void;
 }
 // TODO make Table much beautiful
-const Table = ({ fieldsForBody, tableClass, fieldsForHeader } : tableType) => (
-  <div>
+const Table = ({
+  fieldsForBody,
+  tableClass,
+  fieldsForHeader,
+  onSortClick,
+} : tableType) => {
+  const [sortBy, setSortBy] = useState('');
+  const handleSortingChange = (value: string) => {
+    setSortBy(value);
+    onSortClick(value);
+  };
+
+  return (
     <table className={tableClass}>
-      <TableHeader fields={fieldsForHeader} />
+      <TableHeader sortKey={sortBy} onSortClick={handleSortingChange} fields={fieldsForHeader} />
       <TableBody fields={fieldsForBody} />
     </table>
-  </div>
-);
+  );
+};
 
 export default Table;

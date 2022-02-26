@@ -9,6 +9,7 @@ ul {
 }
 
 ul li a {
+  font-weight: 700;
   font-size: 16px;
   color: #000;
 }
@@ -18,5 +19,5 @@ ul li a.active {
 }
 
 ul li a:hover {
-  color: #00008B;
+  color: #6262ec;
 }
