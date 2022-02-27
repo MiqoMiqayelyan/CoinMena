@@ -1,4 +1,9 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+import {
+  ChangeEvent,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import clsx from 'clsx';
 
 import './style.css';
@@ -6,11 +11,13 @@ import './style.css';
 interface InputType {
   disabled?: boolean;
   labelName?: string;
-  type: 'text' | 'email' | 'password' | 'submit';
+  type: 'text' | 'email' | 'password' | 'submit' | 'number';
   className?: string;
+  containerClass?: string;
   inputValue?: string | number;
   inputPlaceholder?: string;
-  onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
+  children?: ReactNode;
+  onChange?: (value: string | number, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -18,11 +25,13 @@ const Input = ({
   labelName = '',
   type = 'text',
   className,
+  containerClass,
   inputValue,
   inputPlaceholder = '',
+  children,
   onChange,
 }: InputType) => {
-  const [value, setValue] = useState<InputType['inputValue']>('');
+  const [value, setValue] = useState<InputType['inputValue']>(inputValue);
   const inputClassName = clsx('input-container', className);
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +49,7 @@ const Input = ({
   }, [inputValue]);
 
   return (
-    <label>
+    <label className={containerClass}>
       {labelName}
       <input
         className={inputClassName}
@@ -51,6 +60,7 @@ const Input = ({
         placeholder={inputPlaceholder}
         id={labelName}
       />
+      {children}
     </label>
   );
 };

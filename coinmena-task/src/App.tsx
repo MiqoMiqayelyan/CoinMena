@@ -11,6 +11,7 @@ import {
 
 import Header from './Components/Header';
 import Home from './Pages/Home';
+import Trade from './Pages/Trade';
 import { getItemToStorage } from './Utils/localStorage';
 
 import './App.css';
@@ -37,7 +38,7 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/trade" />
+            <Route path="/trade" element={<Trade />} />
           </Routes>
         </main>
       </Router>

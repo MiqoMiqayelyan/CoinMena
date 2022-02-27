@@ -37,6 +37,7 @@
             }
         ],
         "react/function-component-definition": 0,
+        "no-return-await": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
         "jsx-a11y/label-has-associated-control": 0,
         "linebreak-style": 0,

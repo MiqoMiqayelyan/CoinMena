@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 /* eslint-disable camelcase */
 import { useQuery } from 'react-query';
 
@@ -60,6 +59,7 @@ const Home = () => {
   const {
     data,
     refetch,
+    isLoading,
   } = useQuery(
     'posts',
     // sorting is not working , need understood sort value for request
@@ -90,11 +90,13 @@ const Home = () => {
 
   return (
     <div>
-      <Table
-        onSortClick={handleSortClick}
-        fieldsForHeader={fieldsForHeader}
-        fieldsForBody={fieldsForBody}
-      />
+      {isLoading ? <div className="loader">...LOADING</div> : (
+        <Table
+          onSortClick={handleSortClick}
+          fieldsForHeader={fieldsForHeader}
+          fieldsForBody={fieldsForBody}
+        />
+      )}
     </div>
   );
 };

@@ -50,7 +50,7 @@ const LoginForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <Input
         type="email"
         labelName="Email"

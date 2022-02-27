@@ -1,0 +1,17 @@
+.trade-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.trade-component label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trade-component label select {
+    width: 100px;
+    margin-left: 5px;
+}

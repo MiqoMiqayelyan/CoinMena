@@ -3,15 +3,15 @@ import { ChangeEvent, useState } from 'react';
 import './style.css';
 
 type SelectType = {
-    options: {
-        value: string,
-        label: string,
-    }[],
-    selectName?: string,
-    defaultValue?: string,
-    className?: string,
-    disabled?: boolean,
-    onChange?: (value: string, event: ChangeEvent<HTMLSelectElement>) => void
+  options?: {
+      value: string,
+      label: string,
+  }[],
+  selectName?: string,
+  defaultValue?: string,
+  className?: string,
+  disabled?: boolean,
+  onChange?: (value: string, event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const Select = ({

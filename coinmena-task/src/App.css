@@ -1,3 +1,10 @@
 #root > main {
     padding: 40px 20px;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    color: rgb(78, 89, 245);
+}
